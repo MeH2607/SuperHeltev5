@@ -1,2 +1,5 @@
-package com.example.superheltev5.DTO;public class HeroFormDTO {
+package com.example.superheltev5.DTO;
+
+public class HeroFormDTO {
+
 }

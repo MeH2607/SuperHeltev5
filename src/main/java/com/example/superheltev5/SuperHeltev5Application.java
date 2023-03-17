@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SuperHeltev5Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SuperHeltev5Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SuperHeltev5Application.class, args);
+    }
 
 }
