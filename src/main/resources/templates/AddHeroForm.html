@@ -26,8 +26,14 @@
       <option th:each="c : ${listCities}" th:value="${c}" th:text="${c}"/>
     </select><br/>
 
-    <label>Powers</label>
-      <input type="checkbox" th:field="*{powerList}">
+      <label>Powers:
+        <input type="checkbox" name="listPowers"
+               th:each="power : ${listPower}"
+               th:text="${power}"
+               th:value="${power}"
+               th:field="*{powerList}"
+        />
+      </label>
       <br/>
 
     <button type="submit">Submit hero</button>

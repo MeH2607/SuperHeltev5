@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,9 +21,10 @@ public class Controller {
 
         model.addAttribute("hero", new HeroFormDTO());
 
-        List<String> listCities = Arrays.asList("Gotham", "Rødovre", "Hvidovre", "Nørrebro");
+        List<String> listCities = new ArrayList<>(List.of("Gotham", "Rødovre", "Hvidovre", "Nørrebro"));
         model.addAttribute("listCities", listCities);
-
+        List<String> listPowers = new ArrayList<>(List.of("Flying", "Super Strength", "Lasers", "Money"));
+        model.addAttribute("listPower", listPowers);
         return "AddHeroForm";
     }
 
