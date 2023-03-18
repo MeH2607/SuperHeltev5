@@ -1,0 +1,64 @@
+body {
+
+    max-width: 500px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 10px;
+
+}
+
+h1 {
+
+    font-family:Arial;
+
+    font-size: 1.5em;
+
+}
+
+label {
+
+    font-family: Arial;
+
+    width: 150px;
+
+    display: inline-block;
+
+
+
+}
+
+table, th, td {
+
+    border: 1px solid black;
+
+    border-collapse: collapse;
+
+    padding: 5px;
+
+}
+
+th {
+
+    text-align: left;
+
+}
+
+select, input[type="text"], input[type="number"]{
+
+    width:200px;
+
+    box-sizing:border-box;
+
+    padding-bottom: 10px;
+
+    margin-bottom: 20px;
+}
+
+button {
+    margin-top: 15px;
+    color:white;
+    background-color: olivedrab;
+}
