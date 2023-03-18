@@ -8,25 +8,27 @@
 </head>
 <body>
   <div align="center">
+    <h1>Add a hero to the database</h1>
     <form action="#" th:action="@{/register/save}" th:object="${hero}" method="post">
 
-    <h1>Add a hero to the database</h1>
 
     <label>Hero name</label>
-    <input type="text" th:field="*{heroName}"/>
+    <input type="text" th:field="*{heroName}"/><br/>
 
     <label>Real name</label>
-    <input type="text" th:field="*{realName}"/>
+    <input type="text" th:field="*{realName}"/><br/>
 
     <label>Creation year</label>
-    <input type="number" min="1900" max="2023" th:field="*{creationYear}"/>
+    <input type="number" min="1900" max="2023" th:field="*{creationYear}"/><br/>
 
     <label>City</label>
     <select th:field="*{city}">
-      <option th:each="c : ${listCities}" th:value="c" th:text="c"/>
-    </select>
+      <option th:each="c : ${listCities}" th:value="${c}" th:text="${c}"/>
+    </select><br/>
 
     <label>Powers</label>
+      <input type="checkbox" th:field="*{powerList}">
+      <br/>
 
     <button type="submit">Submit hero</button>
 </form>

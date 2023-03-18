@@ -21,7 +21,7 @@ public class Controller {
         model.addAttribute("hero", new HeroFormDTO());
 
         List<String> listCities = Arrays.asList("Gotham", "Rødovre", "Hvidovre", "Nørrebro");
-        model.addAttribute("listProfession", listCities);
+        model.addAttribute("listCities", listCities);
 
         return "AddHeroForm";
     }
