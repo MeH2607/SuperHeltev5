@@ -85,7 +85,7 @@ public class HeroFormDTO {
         this.powerList = powerList;
     }
 
-    public void add(String power) {
+    public void addPower(String power) {
 
         powerList.add(power);
 
