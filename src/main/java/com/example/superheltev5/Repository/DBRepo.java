@@ -1,6 +1,7 @@
 package com.example.superheltev5.Repository;
 
 import com.example.superheltev5.DTO.HeroFormDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -10,6 +11,14 @@ import java.util.List;
 @Repository
 public class DBRepo {
 
+    @Value("${spring.datasource.url}")
+    private String db_url;
+
+    @Value("${spring.datasource.username}")
+    private String uid;
+
+    @Value("${spring.datasource.password}")
+    private String pwd;
 
   /*  public ArrayList<HeroFormDTO> getAllHeroesDB() {
         ArrayList<HeroFormDTO> heroList = new ArrayList<>();
