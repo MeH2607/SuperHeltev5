@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Heroes</title>
+</head>
+<body>
+<div align="center">
+
+  <h1>The Superhero Database !!!</h1>
+
+  <table border="1" cellpadding="10">
+
+
+    <thead> <!-- table header -->
+    <tr>
+      <th>Hero ID</th>
+      <th>Hero name</th>
+      <th>Real name</th>
+      <th>Creation year</th>
+      <th>City</th>
+    <!--  <th>Power</th> -->
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="hero : ${heroList}">
+    <td th:text="${heroID}">Hero ID</td>
+    <td th:text="${heroName}">Hero Name</td>
+    <td th:text="${realName}">Real Name</td>
+    <td th:text="${creationYear}">Creation year</td>
+    <td th:text="${city}">City</td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
+</body>
+</html>

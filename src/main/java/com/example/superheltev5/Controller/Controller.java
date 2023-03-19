@@ -1,6 +1,7 @@
 package com.example.superheltev5.Controller;
 
 import com.example.superheltev5.DTO.HeroFormDTO;
+import com.example.superheltev5.Repository.DBRepo;
 import com.example.superheltev5.Repository.StubRepo;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,17 @@ import java.util.List;
 public class Controller {
 
     StubRepo repo = new StubRepo();
+    DBRepo dbRepo = new DBRepo();
+
+    @GetMapping("/table")
+    public String showAllHeroes(Model model){
+        List<HeroFormDTO>heroList = dbRepo.getAllHeroesDB();
+        model.addAttribute("heroList", heroList);
+        for (HeroFormDTO heroFormDTO : heroList) {
+            System.out.println(heroFormDTO.getHeroId() + " " + heroFormDTO.getHeroName());
+        }
+        return "ShowAllHeroes";
+    }
 
     @GetMapping("/register")
     public String showForm(Model model) {
