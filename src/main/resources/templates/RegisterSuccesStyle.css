@@ -1,0 +1,11 @@
+span{
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+h2{
+    font-family: Arial;
+    margin-bottom: 50px;
+}

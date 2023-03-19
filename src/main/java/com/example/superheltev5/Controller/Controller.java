@@ -28,12 +28,14 @@ public class Controller {
         return "AddHeroForm";
     }
 
-    @PostMapping("/save")
-    public String saveHero(@ModelAttribute HeroFormDTO hero, Model model){
-        repo.saveHero(hero);
-
-        model.addAttribute("hero", hero);
-        return "ShowRegisteredHero";
+    @PostMapping("/register")
+    public String saveHero(@ModelAttribute("hero") HeroFormDTO hero/*, Model model*/){
+       //repo.saveHero(hero);
+        System.out.println(hero.getHeroName());
+    //    model.addAttribute("hero", hero);
+        return "registerSucces";
     }
+
+
 
 }
