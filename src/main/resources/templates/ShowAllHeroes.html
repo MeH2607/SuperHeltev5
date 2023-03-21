@@ -26,13 +26,13 @@
 
     <tbody>
     <tr th:each="hero : ${heroList}">
-    <td th:text="${heroID}">Hero ID</td>
-    <td th:text="${heroName}">Hero Name</td>
-    <td th:text="${realName}">Real Name</td>
-    <td th:text="${creationYear}">Creation year</td>
-    <td th:text="${city}">City</td>
+   <td th:text="${hero.heroID}">Hero ID</td>
+    <td th:text="${hero.heroName}">Hero Name</td>
+    <td th:text="${hero.realName}">Real Name</td>
+    <td th:text="${hero.creationYear}">Creation year</td>
+    <td th:text="${hero.city}">City</td>
       <td>
-        <a th:href="@{'/table/powers/' + ${heroName}}">Powers</a>
+        <a th:href="@{'/table/powers/' + ${hero.heroName}}">Powers</a>
       </td>
     </tr>
     </tbody>

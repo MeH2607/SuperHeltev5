@@ -3,7 +3,7 @@ package com.example.superheltev5.DTO;
 import java.util.List;
 
 public class HeroFormDTO {
-    private int heroId;
+    private int heroID;
 
     private String heroName;
 
@@ -15,11 +15,11 @@ public class HeroFormDTO {
 
     List<String> powerList;
 
-    public HeroFormDTO(int heroId, String heroName, String realName,
+    public HeroFormDTO(int heroID, String heroName, String realName,
 
-                            int creationYear, String city, List<String> powerList) {
+                       int creationYear, String city, List<String> powerList) {
 
-        this.heroId = heroId;
+        this.heroID = heroID;
 
         this.heroName = heroName;
 
@@ -37,12 +37,12 @@ public class HeroFormDTO {
 
     }
 
-    public int getHeroId() {
-        return heroId;
+    public int getHeroID() {
+        return heroID;
     }
 
-    public void setHeroId(int heroId) {
-        this.heroId = heroId;
+    public void setHeroID(int heroID) {
+        this.heroID = heroID;
     }
 
     public String getHeroName() {

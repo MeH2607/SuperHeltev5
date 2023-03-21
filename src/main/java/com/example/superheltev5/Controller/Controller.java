@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -23,10 +22,12 @@ public class Controller {
         List<HeroFormDTO>heroList = dbRepo.getAllHeroesDB();
         model.addAttribute("heroList", heroList);
         for (HeroFormDTO heroFormDTO : heroList) {
-            System.out.println(heroFormDTO.getHeroId() + " " + heroFormDTO.getHeroName());
+            System.out.println(heroFormDTO.getHeroID() + " " + heroFormDTO.getHeroName());
         }
         return "ShowAllHeroes";
     }
+
+   //TODO @GetMapping("/table/")
 
     @GetMapping("/register")
     public String showForm(Model model) {
