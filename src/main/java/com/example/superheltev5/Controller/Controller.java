@@ -16,7 +16,7 @@ public class Controller {
 
     StubRepo repo = new StubRepo();
     DBRepo dbRepo = new DBRepo();
-
+    
     @GetMapping("/table")
     public String showAllHeroes(Model model){
         List<HeroFormDTO>heroList = dbRepo.getAllHeroesDB();
