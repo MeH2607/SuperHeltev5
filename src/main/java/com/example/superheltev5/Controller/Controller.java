@@ -4,10 +4,7 @@ import com.example.superheltev5.DTO.HeroFormDTO;
 import com.example.superheltev5.Repository.DBRepo;
 import com.example.superheltev5.Repository.StubRepo;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +25,11 @@ public class Controller {
         return "ShowAllHeroes";
     }
 
-   @GetMapping("/table/")
-   public String showAllPowersForHero(@RequestParam String heroName, Model model){
+   @GetMapping("/table/powers/{heroName}")
+   public String showAllPowersForHero(@PathVariable String heroName, Model model){
         HeroFormDTO hero = dbRepo.getHeroSearch(heroName);
 
-        model.addAttribute("powerList", hero.getPowerList());
+        model.addAttribute("hero", hero);
         return "showPowers";
    }
 
