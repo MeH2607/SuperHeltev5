@@ -68,9 +68,9 @@ public class DBRepo {
                     "left join city using (zipcode) " +
                     "left outer join superPower_superhero using(heroID) left outer join superpower using(powerID);";
             Statement stmt = con.createStatement();
-           ResultSet rs = stmt.executeQuery(SQL);
-           String currentName="";
-           HeroFormDTO currentDTO = null;
+            ResultSet rs = stmt.executeQuery(SQL);
+            String currentName = "";
+            HeroFormDTO currentDTO = null;
             while (rs.next()) {
 
                 int id = rs.getInt("heroID");
@@ -79,21 +79,53 @@ public class DBRepo {
                 int creationYear = rs.getInt("creationYear");
                 String cityName = rs.getString("cityName");
 
-                if(heroName.equals(currentName)){
+                if (heroName.equals(currentName)) {
                     currentDTO.addPower(rs.getString("powerName"));
-                }
-                else{
+                } else {
                     currentDTO = new HeroFormDTO(id, heroName, realName, creationYear, cityName, new ArrayList<>());
                     currentName = heroName;
                     currentDTO.addPower(rs.getString("powerName"));
                 }
-                if(!heroList.contains(currentDTO))
-                heroList.add(currentDTO);
+                if (!heroList.contains(currentDTO))
+                    heroList.add(currentDTO);
             }
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
         return heroList;
+    }
+
+    public HeroFormDTO getHeroSearch(String heroName) {
+
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/superherodb", "root", "mohamed")) {
+            String SQL = "select heroID, heroName, realName, creationYEar, cityname, powerName from superhero " +
+                    "left join city using (zipcode) " +
+                    "left outer join superPower_superhero using(heroID) left outer join superpower using(powerID)" +
+                    "where heroName = ?";
+
+            PreparedStatement psmt = con.prepareStatement(SQL);
+            psmt.setString(1, heroName);
+            ResultSet rs = psmt.executeQuery();
+            String currentName = "";
+            HeroFormDTO currentDTO = null;
+            while (rs.next()) {
+                int id = rs.getInt("heroID");
+                String hName = rs.getString("heroName");
+                String realName = rs.getString("realName");
+                int creationYear = rs.getInt("creationYear");
+                String cityName = rs.getString("cityName");
+                if (heroName.equals(currentName)) {
+                    currentDTO.addPower(rs.getString("powerName"));
+                } else {
+                    currentDTO = new HeroFormDTO(id, hName, realName, creationYear, cityName, new ArrayList<>());
+                    currentName = heroName;
+                    currentDTO.addPower(rs.getString("powerName"));
+                }
+            }
+            return currentDTO;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

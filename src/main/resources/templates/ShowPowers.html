@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"><head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<div>
-    <h1 th:text="'The powers of ' + ${hero.heroName}/> <br/>
+<div></div>
+    <h1 th:text="${hero.heroName}"/> <br/>
 
-
+<table>
+<tr th:each="p : ${hero.powerList}">
+    <td th:text="${p}"></td>
+</tr>
+</table>
 </div>
 
 </body>

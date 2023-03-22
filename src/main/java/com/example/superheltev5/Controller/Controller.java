@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,13 @@ public class Controller {
         return "ShowAllHeroes";
     }
 
-   //TODO @GetMapping("/table/")
+   @GetMapping("/table/")
+   public String showAllPowersForHero(@RequestParam String heroName, Model model){
+        HeroFormDTO hero = dbRepo.getHeroSearch(heroName);
+
+        model.addAttribute("powerList", hero.getPowerList());
+        return "showPowers";
+   }
 
     @GetMapping("/register")
     public String showForm(Model model) {
