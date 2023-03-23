@@ -48,6 +48,7 @@ public class Controller {
     public String saveHero(@ModelAttribute("hero") HeroFormDTO hero/*, Model model*/){
        //repo.saveHero(hero);
         System.out.println(hero.getHeroName());
+        dbRepo.createHero(hero);
     //    model.addAttribute("hero", hero);
         return "registerSucces";
     }

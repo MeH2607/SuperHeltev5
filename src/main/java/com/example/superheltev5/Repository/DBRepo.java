@@ -144,20 +144,17 @@ public class DBRepo {
             //TODO
             // find power_ids
 
-            String SQL3 = "select power_id from superpower where name = ?;";
+            String SQL3 = "select powerID from superpower where powerName = ?;";
 
             pstmt = con.prepareStatement(SQL3);
 
-            for (String power : form.getPowerList()) {
+            for (String power : heroFormDTO.getPowerList()) {
 
                 pstmt.setString(1, power);
 
                 rs = pstmt.executeQuery();
-
                 if (rs.next()) {
-
-                    powerIDs.add(rs.getInt("power_id"));
-
+                    powerIDs.add(rs.getInt("powerID"));
                 }
 
             }
@@ -165,7 +162,7 @@ public class DBRepo {
             //TODO
 // insert entries in superhero_powers join table
 
-            String SQL4 = "insert into superhero_powers values (?,?);";
+            String SQL4 = "insert into superpower_superhero values (?,?);";
 
             pstmt = con.prepareStatement(SQL4);
 
