@@ -94,9 +94,9 @@ public class DBRepo {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/superherodb", "root", "mohamed")) {
             // ID's
 
-            int cityId = 0;
+            int zipCode = 0;
 
-            int heroId = 0;
+            int heroID = 0;
 
             List<Integer> powerIDs = new ArrayList<>();
 
@@ -111,8 +111,71 @@ public class DBRepo {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
+                zipCode = rs.getInt("zipCode");
+            }
 
-                cityId = rs.getInt("city_id");
+
+            // insert row in superhero table
+
+            String SQL2 = "insert into superhero (heroName, realName, creationYear, zipCode) " +
+
+                    "values(?, ?, ?, ?);";
+
+            pstmt = con.prepareStatement(SQL2, Statement.RETURN_GENERATED_KEYS); // return autoincremented key
+
+            pstmt.setString(1, heroFormDTO.getHeroName());
+
+            pstmt.setString(2, heroFormDTO.getRealName());
+
+            pstmt.setInt(3, heroFormDTO.getCreationYear());
+
+            pstmt.setInt(4, zipCode);
+
+            int rows = pstmt.executeUpdate();
+
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+
+                heroID = rs.getInt(1);
+
+            }
+
+            //TODO
+            // find power_ids
+
+            String SQL3 = "select power_id from superpower where name = ?;";
+
+            pstmt = con.prepareStatement(SQL3);
+
+            for (String power : form.getPowerList()) {
+
+                pstmt.setString(1, power);
+
+                rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+
+                    powerIDs.add(rs.getInt("power_id"));
+
+                }
+
+            }
+
+            //TODO
+// insert entries in superhero_powers join table
+
+            String SQL4 = "insert into superhero_powers values (?,?);";
+
+            pstmt = con.prepareStatement(SQL4);
+
+            for (int i = 0; i < powerIDs.size(); i++) {
+
+                pstmt.setInt(1, heroID);
+
+                pstmt.setInt(2, powerIDs.get(i));
+
+                rows = pstmt.executeUpdate();
 
             }
         } catch (SQLException e) {
