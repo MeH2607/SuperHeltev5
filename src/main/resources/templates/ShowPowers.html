@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="showPowersStyle.css">
+    <link th:href="@{/showPowersStyle.css}" rel="stylesheet">
 
 </head>
 <body>
@@ -11,7 +11,7 @@
 <div align="center">
     <h1 th:text="${hero.heroName}"/> <br/>
 
-<table border="1" cellpadding="10">
+<table>
 <tr th:each="p : ${hero.powerList}">
     <td th:text="${p}"></td>
 </tr>

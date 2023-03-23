@@ -21,45 +21,6 @@ public class DBRepo {
     private String pwd;
 
 
-
-  /*  public ArrayList<HeroFormDTO> getAllHeroesDB() {
-        ArrayList<HeroFormDTO> heroList = new ArrayList<>();
-
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/superherodb", "root", "mohamed")) {
-            String SQL = "select heroID, heroName, realName, creationYEar, cityname, powerName from superhero " +
-                    "left join city using (zipcode) " +
-                    "left outer join superPower_superhero using(heroID) left outer join superpower using(powerID);";
-            Statement stmt = con.createStatement();
-           ResultSet rs = stmt.executeQuery(SQL);
-           String currentName="";
-           HeroFormDTO currentDTO = null;
-            while (rs.next()) {
-
-                int id = rs.getInt("heroID");
-                String heroName = rs.getString("heroName");
-                String realName = rs.getString("realName");
-                int creationYear = rs.getInt("creationYear");
-                String cityName = rs.getString("cityName");
-                List<String>powerList = new ArrayList<>();
-                while(rs.next()){
-                    powerList.add(rs.getString("powerName"));
-                }
-                heroList.add(new HeroFormDTO(id, heroName, realName, creationYear, cityName, powerList));
-
-            }
-
-            for (HeroFormDTO heroFormDTO : heroList) {
-                System.out.println(heroFormDTO.getHeroName());
-                System.out.println(heroFormDTO.getRealName());
-                System.out.println(heroFormDTO.getCreationYear());
-                System.out.println(heroFormDTO.getCity());
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        }
-        return heroList;
-    }*/
-
     public ArrayList<HeroFormDTO> getAllHeroesDB() {
         ArrayList<HeroFormDTO> heroList = new ArrayList<>();
 
@@ -124,6 +85,36 @@ public class DBRepo {
                 }
             }
             return currentDTO;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createHero(HeroFormDTO heroFormDTO) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/superherodb", "root", "mohamed")) {
+            // ID's
+
+            int cityId = 0;
+
+            int heroId = 0;
+
+            List<Integer> powerIDs = new ArrayList<>();
+
+// find city_id
+
+            String SQL1 = "select zipcode from city where cityName = ?;";
+
+            PreparedStatement pstmt = con.prepareStatement(SQL1);
+
+            pstmt.setString(1, heroFormDTO.getCity());
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+
+                cityId = rs.getInt("city_id");
+
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

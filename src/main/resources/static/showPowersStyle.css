@@ -1,5 +1,9 @@
     /*https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l*/
 
+h1{
+    color: red;
+}
+
 table{
 
     border-collapse: collapse;
@@ -10,12 +14,14 @@ table{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-tr {
+
+div, tr,td {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
 
-th, td {
+/*th, td*/
+th {
     padding: 12px 15px;
 }

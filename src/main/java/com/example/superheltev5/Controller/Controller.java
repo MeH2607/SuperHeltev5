@@ -37,7 +37,6 @@ public class Controller {
     public String showForm(Model model) {
 
         model.addAttribute("hero", new HeroFormDTO());
-
         List<String> listCities = new ArrayList<>(List.of("Gotham", "Rødovre", "Hvidovre", "Nørrebro"));
         model.addAttribute("listCities", listCities);
         List<String> listPowers = new ArrayList<>(List.of("Flying", "Super Strength", "Lasers", "Money"));
@@ -52,7 +51,6 @@ public class Controller {
     //    model.addAttribute("hero", hero);
         return "registerSucces";
     }
-
 
 
 }

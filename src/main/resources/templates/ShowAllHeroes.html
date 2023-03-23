@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>All Heroes</title>
-  <link rel="stylesheet" href="ShowAllHeroesStyle.css">
+  <link th:href="ShowAllHeroesStyle.css" rel="stylesheet">
 </head>
 <body>
 <div align="center">
 
   <h1>The Superhero Database !!!</h1>
-
+<div>
+    <button>
+        <a th:href="@{/register}" target="_self">Add a new hero</a>
+    </button>
+</div>
   <table border="1" cellpadding="10" >
-
 
     <thead> <!-- table header -->
     <tr>
@@ -32,12 +35,13 @@
     <td th:text="${hero.creationYear}">Creation year</td>
     <td th:text="${hero.city}">City</td>
       <td>
-        <a th:href="@{'/table/powers/' + ${hero.heroName}}">Powers</a>
+            <a th:href="@{'/table/powers/' + ${hero.heroName}}">Powers</a>
       </td>
     </tr>
     </tbody>
 
   </table>
+
 
 </div>
 </body>
