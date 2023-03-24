@@ -53,5 +53,10 @@ public class Controller {
         return "registerSucces";
     }
 
+    @PostMapping("/delete")
+    public String deleteHero(@RequestParam int heroID){
+
+        return "deleteSuccess";
+    }
 
 }

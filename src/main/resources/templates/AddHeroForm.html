@@ -1,4 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form</title>
+  <link th:href="@{FormStyle.css}"  rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center">Add a hero to the database</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form action="#" th:action="@{/register}" method="post" th:object="${hero}">
 
+        <div class="form-group">
+          <label for="heroName">Hero name</label>
+          <input type="text" class="form-control" id="heroName" th:field="*{heroName}">
+        </div>
+
+        <div class="form-group">
+          <label for="realName">Real name</label>
+          <input type="text" class="form-control" id="realName" th:field="*{realName}">
+        </div>
+
+        <div class="form-group">
+          <label for="creationYear">Creation year</label>
+          <input type="number" class="form-control" id="creationYear" min="1900" max="2023" th:field="*{creationYear}">
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <select class="form-control" id="city" th:field="*{city}">
+            <option th:each="c : ${listCities}" th:value="${c}" th:text="${c}"/>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Powers:</label>
+          <div class="form-check" th:each="power : ${listPower}">
+            <input type="checkbox" class="form-check-input" th:id="'power-' + ${power}" th:name="listPowers" th:value="${power}" th:field="*{powerList}">
+            <label class="form-check-label" th:for="'power-' + ${power}" th:text="${power}"></label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit hero</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+<!--
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
@@ -46,4 +104,4 @@
 
 
 </body>
-</html>
+</html> -->
