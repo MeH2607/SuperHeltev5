@@ -1,9 +1,10 @@
-tr{
-    color: pink;
+table, th, td{
     font-family: Arial;
+    color: black;
 }
 
 
 h1{
-    color: blue;
+    font-family: "Comic Sans MS";
+     color: black;
 }

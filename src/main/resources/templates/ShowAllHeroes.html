@@ -3,6 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>All Heroes</title>
+    <link th:href="@{ShowAllHeroesStyle.css}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+
+    <h1 class="text-center">The Superhero Database !!!</h1>
+
+    <div class="text-center mb-3">
+        <a class="btn btn-primary" th:href="@{/register}" target="_self">Add a new hero</a>
+    </div>
+
+    <table class="table" >
+
+        <thead> <!-- table header -->
+        <tr>
+            <th>Hero ID</th>
+            <th>Hero name</th>
+            <th>Real name</th>
+            <th>Creation year</th>
+            <th>City</th>
+            <th>Power</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="hero : ${heroList}">
+            <td th:text="${hero.heroID}">Hero ID</td>
+            <td th:text="${hero.heroName}">Hero Name</td>
+            <td th:text="${hero.realName}">Real Name</td>
+            <td th:text="${hero.creationYear}">Creation year</td>
+            <td th:text="${hero.city}">City</td>
+            <td>
+                <a class="btn btn-secondary" th:href="@{'/table/powers/' + ${hero.heroName}}">Powers</a>
+            </td>
+            <td>
+                <a class="btn btn-secondary" th:href="@{'/edit/' + ${hero.getHeroID()}}">Edit</a>
+                <a class="btn btn-secondary" th:href="@{'/delete/' + ${hero.getHeroID()}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Heroes</title>
   <link th:href="ShowAllHeroesStyle.css" rel="stylesheet">
 </head>
 <body>
@@ -16,7 +74,7 @@
 </div>
   <table border="1" cellpadding="10" >
 
-    <thead> <!-- table header -->
+    <thead>
     <tr>
       <th>Hero ID</th>
       <th>Hero name</th>
@@ -45,4 +103,4 @@
 
 </div>
 </body>
-</html>
+</html> -->
