@@ -19,9 +19,6 @@ public class Controller {
     public String showAllHeroes(Model model){
         List<HeroFormDTO>heroList = dbRepo.getAllHeroesDB();
         model.addAttribute("heroList", heroList);
-        for (HeroFormDTO heroFormDTO : heroList) {
-            System.out.println(heroFormDTO.getHeroID() + " " + heroFormDTO.getHeroName());
-        }
         return "ShowAllHeroes";
     }
 
@@ -45,16 +42,28 @@ public class Controller {
     }
 
     @PostMapping("/register")
-    public String saveHero(@ModelAttribute("hero") HeroFormDTO hero/*, Model model*/){
-       //repo.saveHero(hero);
-        System.out.println(hero.getHeroName());
+    public String saveHero(@ModelAttribute("hero") HeroFormDTO hero){
+
+
         dbRepo.createHero(hero);
-    //    model.addAttribute("hero", hero);
+
         return "registerSucces";
     }
 
-    @PostMapping("/delete")
-    public String deleteHero(@RequestParam int heroID){
+    @GetMapping("/delete")
+    public String confirmDeleteHero(@RequestParam String heroName, Model model, HeroFormDTO hero){
+        hero = dbRepo.getHeroSearch(heroName);
+        model.addAttribute("hero", hero);
+        return "DeleteConfirmation";
+    }
+
+
+        @PostMapping("/delete")
+    public String deleteHero(@RequestParam String heroName){
+
+        HeroFormDTO hero = dbRepo.getHeroSearch(heroName);
+
+        dbRepo.deleteHero(hero);
 
         return "deleteSuccess";
     }

@@ -159,8 +159,6 @@ public class DBRepo {
 
             }
 
-            //TODO
-// insert entries in superhero_powers join table
 
             String SQL4 = "insert into superpower_superhero values (?,?);";
 
@@ -175,6 +173,30 @@ public class DBRepo {
                 rows = pstmt.executeUpdate();
 
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteHero(HeroFormDTO heroFormDTO){
+       int heroID = heroFormDTO.getHeroID();
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/superherodb", "root", "mohamed")){
+            String sql1 = "delete from superpower_superhero where heroID = ?";
+
+            PreparedStatement pstm1 = con.prepareStatement(sql1);
+
+            pstm1.setInt(1,heroID);
+
+            ResultSet rs = pstm1.executeQuery();
+
+
+            String sql2 = "delete from superhero where heroID = ?";
+
+            PreparedStatement pstm2 = con.prepareStatement(sql2);
+
+            rs = pstm2.executeQuery();
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

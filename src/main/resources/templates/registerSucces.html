@@ -4,17 +4,20 @@
     <meta charset="UTF-8">-
     <title>Register success</title>
     <link rel="stylesheet" href="../static/RegisterSuccesStyle.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <div align="center">
     <h2>You have succesfully added a new hero</h2>
-    <!-- <span>Hero ID </span><span th:text="${hero.heroID}"></span>><br/>-->
      <span>Hero Name: </span><span th:text="${hero.heroName}"></span><br/>
      <span>Real Name: </span><span th:text="${hero.realName}"></span><br/>
      <span>Creation year: </span><span th:text="${hero.creationYear}"></span><br/>
      <span>City: </span><span th:text="${hero.city}"></span><br/>
      <span>Powers: </span><span th:each="p : ${powerList}"> th:text="p"</span><br/>
-    <button onclick="/register">Register another hero</button>
+
+    <div class="text-center mb-3">
+        <a class="btn btn-primary" th:href="@{/table}" target="_self">Return to database</a>
+    </div>
 </div>
 </body>
 </html>

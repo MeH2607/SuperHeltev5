@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Confirmation</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div>
+  <h1 th:text="'Are you sure you want to delete ' + ${hero.getName} + ' from the database?'"></h1>
+  <div class="text-center mb-3">
+    <a class="btn btn-primary" th:href="@{/table}" target="_self">No</a>
+  </div>
+  <div class="text-center mb-3">
+    <a class="btn btn-danger" th:href="@{/delete}" target="_self">Yes</a>
+  </div>
+</div>
+
+</body>
+</html>
