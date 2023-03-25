@@ -50,22 +50,24 @@ public class Controller {
         return "registerSucces";
     }
 
-    @GetMapping("/delete")
-    public String confirmDeleteHero(@RequestParam String heroName, Model model, HeroFormDTO hero){
-        hero = dbRepo.getHeroSearch(heroName);
+    @GetMapping("/deleteConfirm/{heroName}")
+    public String confirmDeleteHero(@PathVariable String heroName, Model model){
+       HeroFormDTO hero = dbRepo.getHeroSearch(heroName);
         model.addAttribute("hero", hero);
         return "DeleteConfirmation";
     }
 
 
-        @PostMapping("/delete")
-    public String deleteHero(@RequestParam String heroName){
+        @PostMapping("/delete/{heroName}")
+    public String deleteHero(@PathVariable String heroName, Model model){
+
+        model.addAttribute("heroName", heroName);
 
         HeroFormDTO hero = dbRepo.getHeroSearch(heroName);
 
         dbRepo.deleteHero(hero);
 
-        return "deleteSuccess";
+        return "DeleteSuccess";
     }
 
 }
