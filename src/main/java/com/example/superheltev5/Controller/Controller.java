@@ -46,7 +46,7 @@ public class Controller {
 
 
         dbRepo.createHero(hero);
-
+    //    model.addAttribute("hero", hero);
         return "registerSucces";
     }
 
